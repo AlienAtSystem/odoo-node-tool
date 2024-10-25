@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="node_connection_form_view">
+            <field name="name">Connection Form View</field>
+            <field name="model">node.connection</field>
+            <field name="arch" type="xml">
+                <form string="Clue">
+                    <header>
+                    </header>
+                    <sheet string="Clue">
+                        <div class="oe_button_box" name="button_box" groups="base.group_user">
+                        </div>
+
+                        <div class="oe_title pr-0">
+                            <h1 class="d-flex flex-row justify-content-between">
+                                <field name="name" class="text-truncate" placeholder="Clue Name..." required="True"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="location_id"/>
+                            <field name="target_id"/>
+                        </group>
+                        <notebook>
+                            <page string="Content">
+                                <field name="description" type="html"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="node_connection_tree_view">
+            <field name="name">Connection Tree View</field>
+            <field name="model">node.connection</field>
+            <field name="arch" type="xml">
+                <tree string="Clues" sample="1">
+                    <field name="name"/>
+                    <field name="location_id"/>
+                    <field name="target_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="node_connection_search_view">
+            <field name="name">Clue Search View</field>
+            <field name="model">node.connection</field>
+            <field name="arch" type="xml">
+                <search string="Clues">
+                    <field name="name" string="Clue"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Location" name="group_out" context="{'group_by': 'location_id'}"/>
+                        <filter string="Target" name="group_in" context="{'group_by': 'target_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

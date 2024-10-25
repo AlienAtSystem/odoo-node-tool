@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="node_node_form_view">
+            <field name="name">Node Form View</field>
+            <field name="model">node.node</field>
+            <field name="arch" type="xml">
+                <form string="Node">
+                    <header>
+                    </header>
+                    <sheet string="Node">
+                        <div class="oe_button_box" name="button_box" groups="base.group_user">
+                        </div>
+
+                        <div class="oe_title pr-0">
+                            <h1 class="d-flex flex-row justify-content-between">
+                                <field name="name" class="text-truncate" placeholder="Node Name..." required="True"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="node_type"/>
+                            <field name="tag_ids" widget="many2many_tags"/>
+                        </group>
+                        <notebook>
+                            <page string="Content">
+                                <field name="description" type="html"/>
+                            </page>
+                            <page string="Present Clues">
+                                <field name="connections_out_ids" context="{'default_location_id': id}">
+                                    <tree string="Clues">
+                                        <field name="name"/>
+                                        <field name="target_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Incoming Clues">
+                                <field name="connections_in_ids" context="{'default_target_id': id}">
+                                    <tree string="Clues">
+                                        <field name="name"/>
+                                        <field name="location_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="node_node_tree_view">
+            <field name="name">Node Tree View</field>
+            <field name="model">node.node</field>
+            <field name="arch" type="xml">
+                <tree string="Nodes" sample="1">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="node_type"/>
+                    <field name="tag_ids" widget="many2many_tags" optional="hide"/>
+                    <field name="connections_in_count"/>
+                    <field name="connections_out_count"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="node_node_search_view">
+            <field name="name">Node Search View</field>
+            <field name="model">node.node</field>
+            <field name="arch" type="xml">
+                <search string="Nodes">
+                    <field name="name" string="Node"/>
+                    <filter string="Locations" name="type_location" domain="[('node_type', 'in', ['location'])]"/>
+                    <filter string="Concepts" name="type_concept" domain="[('node_type', 'in', ['concept'])]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Type" name="group_type" context="{'group_by': 'node_type'}"/>
+                        <filter string="Tags" name="group_tags" context="{'group_by': 'tag_ids'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_node_user,access_node_user,alexandrian_node_tool.model_node_node,base.group_user,1,1,1,1
+access_conn_user,access_conn_user,alexandrian_node_tool.model_node_connection,base.group_user,1,1,1,1
+access_tag_user,access_tag_user,alexandrian_node_tool.model_node_tag,base.group_user,1,1,1,1
