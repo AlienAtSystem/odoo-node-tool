@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="action_report_map" model="ir.actions.report">
+            <field name="name">Point Map</field>
+            <field name="model">point.area</field>
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">pointcrawl_tool.report_point_map</field>
+            <field name="report_file">pointcrawl_tool.report_point_map</field>
+        </record>
+    </data>
+</odoo>

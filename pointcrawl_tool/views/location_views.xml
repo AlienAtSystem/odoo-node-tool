@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="point_location_form_view">
+            <field name="name">Location Form View</field>
+            <field name="model">point.location</field>
+            <field name="arch" type="xml">
+                <form string="Location">
+                    <header>
+                    </header>
+                    <sheet string="Location">
+                        <div class="oe_button_box" name="button_box" groups="base.group_user">
+                        </div>
+
+                        <div class="oe_title pr-0">
+                            <h1 class="d-flex flex-row justify-content-between">
+                                <field name="name" class="text-truncate" placeholder="Location Name..." required="True"/>
+                            </h1>
+                            <div class="o_row">
+                                <field name="area_id"/>
+                            </div>
+                        </div>
+                        <notebook>
+                            <page string="Content">
+                                <field name="description" type="html"/>
+                            </page>
+                            <page string="Connections">
+                                <field name="connection_ids" context="{'default_location_id': id,}">
+                                    <tree editable="bottom" string="Connections" delete="0">
+                                        <field name="location_id" column_invisible="True"/>
+                                        <field name="path_description"/>
+                                        <field name="other_location_id" readonly="False"/>
+                                        <field name="connection_type_id" optional="hide" readonly="False"/>
+                                        <button name="action_swap_locations" icon="fa-rotate-right" type="object"/>
+                                        <button name="action_unlink" icon="fa-trash" type="object"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="point_location_tree_view">
+            <field name="name">Location Tree View</field>
+            <field name="model">point.location</field>
+            <field name="arch" type="xml">
+                <tree string="Locations" sample="1">
+                    <field name="name"/>
+                    <field name="area_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="point_location_search_view">
+            <field name="name">Location Search View</field>
+            <field name="model">point.location</field>
+            <field name="arch" type="xml">
+                <search string="Location">
+                    <field name="name" string="Location"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Area" name="group_area" context="{'group_by': 'area_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+    </data>
+</odoo>

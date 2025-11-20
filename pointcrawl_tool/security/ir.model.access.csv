@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_location_user,access_location_user,pointcrawl_tool.model_point_location,base.group_user,1,1,1,1
+access_conn_user,access_conn_user,pointcrawl_tool.model_point_connection,base.group_user,1,1,1,1
+access_area_user,access_area_user,pointcrawl_tool.model_point_area,base.group_user,1,1,1,1
+access_conn_type_user,access_conn_type_user,pointcrawl_tool.model_point_connection_type,base.group_user,1,1,1,1
+access_conn_temp_user,access_conn_temp_user,pointcrawl_tool.model_point_connection_directed,base.group_user,1,1,1,1

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="node_connection_tree_view">
+            <field name="name">Connection Tree View</field>
+            <field name="model">point.connection</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom" create="1" delete="1" string="Connections" sample="1">
+                    <field name="connection_type_id"/>
+                    <field name="location_up_id"/>
+                    <field name="location_down_id"/>
+                    <button name="action_swap_locations" icon="fa-rotate-right" type="object"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="node_connection_search_view">
+            <field name="name">Connection Search View</field>
+            <field name="model">point.connection</field>
+            <field name="arch" type="xml">
+                <search string="Connections">
+                    <field name="connection_type_id" string="Type"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Upwards Location" name="group_out" context="{'group_by': 'location_up_id'}"/>
+                        <filter string="Downwards Location" name="group_in" context="{'group_by': 'location_down_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="node_connection_type_tree_view">
+            <field name="name">Connection Type Tree View</field>
+            <field name="model">point.connection.type</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom" create="1" delete="1" string="Connection Types" sample="1">
+                    <field name="name"/>
+                    <field name="description_up"/>
+                    <field name="description_down"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="node_connection_type_search_view">
+            <field name="name">Connection Type Search View</field>
+            <field name="model">point.connection.type</field>
+            <field name="arch" type="xml">
+                <search string="Connections Types">
+                    <field name="name" string="Name"/>
+                </search>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

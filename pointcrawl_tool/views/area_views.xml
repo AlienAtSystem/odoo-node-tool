@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="point_area_form_view">
+            <field name="name">Area Form View</field>
+            <field name="model">point.area</field>
+            <field name="arch" type="xml">
+                <form string="Node">
+                    <header>
+                    </header>
+                    <sheet string="Node">
+                        <div class="oe_button_box" name="button_box" groups="base.group_user">
+                        </div>
+
+                        <div class="oe_title pr-0">
+                            <h1 class="d-flex flex-row justify-content-between">
+                                <field name="name" class="text-truncate" placeholder="Area Name..." required="True"/>
+                            </h1>
+                            <div class="o_row">
+                                <field name="parent_id"/>
+                            </div>
+                        </div>
+                        <notebook>
+                            <page string="Content">
+                                <field name="description" type="html"/>
+                            </page>
+                            <page string="Children">
+                                <field name="child_ids" context="{'default_parent_id': id}">
+                                    <tree string="Areas">
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Locations">
+                                <field name="location_ids" context="{'default_area_id': id}">
+                                    <tree string="Locations">
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="point_area_tree_view">
+            <field name="name">Area Tree View</field>
+            <field name="model">point.area</field>
+            <field name="arch" type="xml">
+                <tree string="Areas" sample="1">
+                    <field name="name"/>
+                    <field name="parent_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="point_area_search_view">
+            <field name="name">Node Search View</field>
+            <field name="model">point.area</field>
+            <field name="arch" type="xml">
+                <search string="Areas">
+                    <field name="name" string="Area"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Parent" name="group_parent" context="{'group_by': 'parent_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+    </data>
+</odoo>
