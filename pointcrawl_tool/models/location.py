@@ -12,6 +12,7 @@ class Location(models.Model):
     description = fields.Html('Description')
 
     area_id = fields.Many2one('point.area','Area')
+    display_color = fields.Char('Display Color', compute='_compute_display_color')
 
     connection_down_ids = fields.One2many('point.connection', 'location_up_id')
     connection_up_ids = fields.One2many('point.connection', 'location_down_id')
@@ -23,6 +24,14 @@ class Location(models.Model):
             connection_ids = rec.connection_down_ids | rec.connection_up_ids
             new_conns = self.env['point.connection.directed'].create([{'connection_id': connection.id, 'location_id': rec.id} for connection in connection_ids])
             rec.connection_ids = new_conns
+
+    @api.depends('area_id', 'area_id.display_color')
+    def _compute_display_color(self):
+        for rec in self:
+            if rec.area_id:
+                rec.display_color = rec.area_id.display_color
+            else:
+                rec.display_color = "#000000"
 
     def _set_connection_ids(self):
         for rec in self:

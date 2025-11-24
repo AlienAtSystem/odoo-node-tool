@@ -9,6 +9,7 @@
                     <field name="connection_type_id"/>
                     <field name="location_up_id"/>
                     <field name="location_down_id"/>
+                    <field name="area_id"/>
                     <button name="action_swap_locations" icon="fa-rotate-right" type="object"/>
                 </tree>
             </field>
@@ -34,6 +35,7 @@
             <field name="arch" type="xml">
                 <tree editable="bottom" create="1" delete="1" string="Connection Types" sample="1">
                     <field name="name"/>
+                    <field name="color" widget="color"/>
                     <field name="description_up"/>
                     <field name="description_down"/>
                 </tree>

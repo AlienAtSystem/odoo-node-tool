@@ -10,3 +10,4 @@ class ConectionType(models.Model):
     name = fields.Char('Name', required=True)
     description_up = fields.Char('Upwards Description')
     description_down = fields.Char('Downwards Description')
+    color = fields.Char('Color')

@@ -20,6 +20,9 @@
                                 <field name="parent_id"/>
                             </div>
                         </div>
+                        <group>
+                            <field name="color" widget="color"/>
+                        </group>
                         <notebook>
                             <page string="Content">
                                 <field name="description" type="html"/>

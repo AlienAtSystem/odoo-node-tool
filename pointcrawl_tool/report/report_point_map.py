@@ -16,8 +16,8 @@ class ReportPointMap(models.AbstractModel):
         connections = locations.connection_down_ids | locations.connection_up_ids
         graph = pydot.Dot("point_map", graph_type="graph")
         for location in locations:
-            graph.add_node(pydot.Node(location.id,label=location.name))
+            graph.add_node(pydot.Node(location.id,label=location.name,color=location.display_color))
         for connection in connections:
-            graph.add_edge(pydot.Edge(connection.location_up_id.id,connection.location_down_id.id))
+            graph.add_edge(pydot.Edge(connection.location_up_id.id,connection.location_down_id.id,color=connection.display_color))
         svg = graph.create(format="svg",prog="fdp").decode()
         return {'svg': Markup(svg)}
