@@ -3,7 +3,7 @@
     <data>
 
         <record id="point_location_action" model="ir.actions.act_window">
-            <field name="name">Nodes</field>
+            <field name="name">Locations</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">point.location</field>
             <field name="view_mode">tree,form</field>
