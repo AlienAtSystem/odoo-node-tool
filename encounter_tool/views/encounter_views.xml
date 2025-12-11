@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="bestiary_encounter_table_form_view">
+            <field name="name">Encounter Table Form View</field>
+            <field name="model">bestiary.encounter.table</field>
+            <field name="arch" type="xml">
+                <form string="Encounter Table">
+                    <header>
+                        <button name="action_encounter_generator" string="Generate Encounter" type="object"/>
+                    </header>
+                    <sheet string="Encounter Table">
+                        <div class="oe_button_box" name="button_box" groups="base.group_user">
+                        </div>
+
+                        <div class="oe_title pr-0">
+                            <h1 class="d-flex flex-row justify-content-between">
+                                <field name="name" class="text-truncate" placeholder="Name..." required="True"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="number_appearing_min"/>
+                            <field name="number_appearing_max"/>
+                            <field name="average_cr"/>
+                        </group>
+                        <notebook>
+                            <page string="Content">
+                                <field name="table_line_ids">
+                                    <tree string="Encounter Table Lines" editable="bottom">
+                                        <field name="entry_id"/>
+                                        <field name="entry_challenge_rating"/>
+                                        <field name="ticket_amount"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="bestiary_encounter_table_tree_view">
+            <field name="name">Encounter Table Tree View</field>
+            <field name="model">bestiary.encounter.table</field>
+            <field name="arch" type="xml">
+                <tree string="Encounter Table" sample="1">
+                    <field name="name"/>
+                    <field name="average_cr"/>
+                    <field name="number_appearing_min"/>
+                    <field name="number_appearing_max"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="bestiary_encounter_table_search_view">
+            <field name="name">Encounter Table Search View</field>
+            <field name="model">bestiary.encounter.table</field>
+            <field name="arch" type="xml">
+                <search string="Encounters">
+                    <field name="name" string="Encounter"/>
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

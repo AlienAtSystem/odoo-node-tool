@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_encounter_generation" model="ir.ui.view">
+        <field name="name">view_encounter_generation_wizard</field>
+        <field name="model">bestiary.encounter.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Encounter Generation">
+                <group>
+                    <field name="encounter_table_id"/>
+                </group>
+                <group>
+                    <field name="difficulty_choice"/>
+                    <field name="difficulty_multiplier"/>
+                </group>
+                <group>
+                    <button name="action_generate_encounter" type="object" class="btn btn-primary" title="Generate Encounter">
+                        <span>Generate</span>
+                    </button>
+                    <field name="output_pretty" readonly="True"/>
+                </group>
+                <footer>
+<!--                    <button name="apply" string="Apply" type="object" class="btn-primary" invisible="not show_apply"/>-->
+                    <button string="Close" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="act_encounter_generation" model="ir.actions.act_window">
+        <field name="name">Generate Encounter</field>
+        <field name="res_model">bestiary.encounter.wizard</field>
+        <field name="view_id" ref="view_encounter_generation"/>
+        <field name="view_mode">form</field>
+        <field name="context">{}</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

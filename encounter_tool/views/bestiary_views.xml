@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="bestiary_entry_form_view">
+            <field name="name">Monster Form View</field>
+            <field name="model">bestiary.entry</field>
+            <field name="arch" type="xml">
+                <form string="Monster">
+                    <header>
+                    </header>
+                    <sheet string="Monster">
+                        <div class="oe_button_box" name="button_box" groups="base.group_user">
+                        </div>
+
+                        <div class="oe_title pr-0">
+                            <h1 class="d-flex flex-row justify-content-between">
+                                <field name="name" class="text-truncate" placeholder="Monster Name..." required="True"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="challenge_rating"/>
+                        </group>
+                        <notebook>
+                            <page string="Content">
+                                <group>
+                                    <field name="description_rules" type="html"/>
+                                </group>
+                                <group>
+                                    <field name="description_lore" type="html"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="bestiary_entry_tree_view">
+            <field name="name">Monster Tree View</field>
+            <field name="model">bestiary.entry</field>
+            <field name="arch" type="xml">
+                <tree string="Monsters" sample="1">
+                    <field name="name"/>
+                    <field name="challenge_rating"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="bestiary_entry_search_view">
+            <field name="name">Monster Search View</field>
+            <field name="model">bestiary.entry</field>
+            <field name="arch" type="xml">
+                <search string="Monsters">
+                    <field name="name" string="Entry"/>
+                </search>
+            </field>
+        </record>
+
+    </data>
+</odoo>

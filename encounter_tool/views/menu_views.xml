@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="bestiary_entry_action" model="ir.actions.act_window">
+            <field name="name">Monsters</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">bestiary.entry</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No monsters found. Let's create one!
+                </p>
+            </field>
+        </record>
+
+        <record id="bestiary_encounter_table_action" model="ir.actions.act_window">
+            <field name="name">Encounter Tables</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">bestiary.encounter.table</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No encounter tables found.
+                </p>
+            </field>
+        </record>
+
+
+        <menuitem name="Bestiary"
+                  id="menu_bestiary_root"
+                  action=""
+                  web_icon="encounter_tool,static/description/icon.png"
+                  sequence="4"/>
+
+        <menuitem name="Bestiary"
+                  id="menu_bestiary_elements"
+                  action=""
+                  sequence="10"
+                  parent="menu_bestiary_root"/>
+
+        <menuitem name="Monsters"
+                  id="menu_bestiary_entries"
+                  action="bestiary_entry_action"
+                  sequence="10"
+                  parent="menu_bestiary_elements"/>
+
+        <menuitem name="Encounters"
+                  id="menu_bestiary_encounter_tables"
+                  action="bestiary_encounter_table_action"
+                  sequence="20"
+                  parent="menu_bestiary_elements"/>
+
+    </data>
+</odoo>
