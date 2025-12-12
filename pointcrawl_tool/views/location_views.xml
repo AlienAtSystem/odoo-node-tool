@@ -21,10 +21,10 @@
                             </div>
                         </div>
                         <notebook>
-                            <page string="Content">
+                            <page string="Content" name="content">
                                 <field name="description" type="html"/>
                             </page>
-                            <page string="Connections">
+                            <page string="Connections" name="connections">
                                 <field name="connection_ids" context="{'default_location_id': id,}">
                                     <tree editable="bottom" string="Connections" delete="0">
                                         <field name="location_id" column_invisible="True"/>

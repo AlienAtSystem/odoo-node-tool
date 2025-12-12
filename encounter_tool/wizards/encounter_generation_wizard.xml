@@ -5,6 +5,9 @@
         <field name="model">bestiary.encounter.wizard</field>
         <field name="arch" type="xml">
             <form string="Encounter Generation">
+                <header>
+                    <field name="allow_apply" invisible="True"/>
+                </header>
                 <group>
                     <field name="encounter_table_id"/>
                 </group>
@@ -19,7 +22,7 @@
                     <field name="output_pretty" readonly="True"/>
                 </group>
                 <footer>
-<!--                    <button name="apply" string="Apply" type="object" class="btn-primary" invisible="not show_apply"/>-->
+                    <button name="action_apply" string="Apply" type="object" class="btn-primary" invisible="not allow_apply"/>
                     <button string="Close" class="btn-secondary" special="cancel" />
                 </footer>
             </form>

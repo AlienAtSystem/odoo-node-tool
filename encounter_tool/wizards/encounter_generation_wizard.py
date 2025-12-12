@@ -22,6 +22,11 @@ class EncounterWizard(models.TransientModel):
     output_json = fields.Text("Encounter (JSON)")
     output_pretty = fields.Html("Generated Encounter", compute='_compute_pretty_output')
 
+    # Applicability Sub-Fields
+    res_model = fields.Char('Resource Model')
+    res_id = fields.Many2oneReference('Resource ID', model_field="res_model")
+    allow_apply = fields.Boolean('Allow Apply', default=False)
+
     @api.constrains('difficulty_multiplier')
     def _check_multiplier_positive(self):
         if self.difficulty_multiplier <=0:
@@ -58,6 +63,12 @@ class EncounterWizard(models.TransientModel):
         except ValueError:
             return False, False
         return cr_param, n_param
+
+    def action_apply(self):
+        self.ensure_one()
+        target_model = self.env[self.res_model].browse(self.res_id).exists()
+        if hasattr(target_model,'_action_apply_bestiary_encounter'):
+            target_model._action_apply_bestiary_encounter(json.loads(self.output_json or "[]"))
 
     def action_generate_encounter(self):
         self.ensure_one()

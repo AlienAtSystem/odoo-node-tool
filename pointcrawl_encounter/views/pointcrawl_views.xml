@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pointcrawl_encounter_update_location_view_form" model="ir.ui.view">
+        <field name="name">pointcrawl.encounter.location.update.view.form</field>
+        <field name="model">point.location</field>
+        <field name="inherit_id" ref="pointcrawl_tool.point_location_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_encounter_generator" string="Generate Encounter" type="object"/>
+            </xpath>
+            <xpath expr="//notebook/page[@name='connections']" position="after">
+                <page string="Encounters" name="ecnounters">
+                    <label for="encounter_table_id"/> <field name="encounter_table_id"/>
+                    <field name="roster" context="{'default_location_id': id,}">
+                        <tree editable="bottom" string="Monsters">
+                            <field name="location_id" column_invisible="True"/>
+                            <field name="entry_id"/>
+                            <field name="amount"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="pointcrawl_encounter_update_area_view_form" model="ir.ui.view">
+        <field name="name">pointcrawl.encounter.area.update.view.form</field>
+        <field name="model">point.area</field>
+        <field name="inherit_id" ref="pointcrawl_tool.point_area_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='display']" position="before">
+                <group name="encounters">
+                    <field name="encounter_table_id"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="pointcrawl_encounter_update_area_view_tree" model="ir.ui.view">
+        <field name="name">pointcrawl.encounter.area.update.view.tree</field>
+        <field name="model">point.area</field>
+        <field name="inherit_id" ref="pointcrawl_tool.point_area_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='parent_id']" position="after">
+                <field name="encounter_table_id"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
