@@ -8,7 +8,7 @@ import random
 class EncounterWizard(models.TransientModel):
     _name = 'bestiary.encounter.wizard'
 
-    encounter_table_id = fields.Many2one('bestiary.encounter.table', 'Encounter Table')
+    encounter_table_id = fields.Many2one('bestiary.encounter.table', 'Encounter Table', domain="[('id','in',allowed_table_ids)]")
 
     difficulty_multiplier = fields.Float("Multiplier", default=1)
     difficulty_choice = fields.Selection([
@@ -26,6 +26,12 @@ class EncounterWizard(models.TransientModel):
     res_model = fields.Char('Resource Model')
     res_id = fields.Many2oneReference('Resource ID', model_field="res_model")
     allow_apply = fields.Boolean('Allow Apply', default=False)
+
+    # Pre-Selection Sub-Fields
+    selected_table_ids = fields.Many2many('bestiary.encounter.table', string='Possible Encounters')
+    use_selected_table = fields.Boolean('Only Show Relevant Tables')
+    allow_selection = fields.Boolean('Allow Selection', compute='_compute_allow_selection')
+    allowed_table_domain = fields.Binary(compute='_compute_allowed_tables')
 
     @api.constrains('difficulty_multiplier')
     def _check_multiplier_positive(self):
@@ -52,6 +58,19 @@ class EncounterWizard(models.TransientModel):
         for rec in self:
             encounter_lines = json.loads(rec.output_json or "[]")
             rec.output_pretty = "<p>"+"</p><p>".join(self._get_pretty_output_line(line) for line in encounter_lines)+"</p>"
+
+    @api.depends('selected_table_ids')
+    def _compute_allow_selection(self):
+        for rec in self:
+            rec.allow_selection = bool(rec.selected_table_ids)
+
+    @api.depends('use_selected_table')
+    def _compute_allowed_tables(self):
+        for rec in self:
+            if rec.use_selected_table:
+                rec.allowed_table_domain = [('id','in', rec.selected_table_ids.ids)]
+            else:
+                rec.allowed_table_domain = []
 
     @api.model
     def _get_lanchester_parameters(self):

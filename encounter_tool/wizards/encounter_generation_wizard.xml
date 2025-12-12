@@ -7,9 +7,13 @@
             <form string="Encounter Generation">
                 <header>
                     <field name="allow_apply" invisible="True"/>
+                    <field name="allow_selection" invisible="True"/>
+                    <field name="allowed_table_domain" invisible="True"/>
+                    <field name="selected_table_ids" invisible="True"/>
                 </header>
                 <group>
-                    <field name="encounter_table_id"/>
+                    <field name="use_selected_table" widget="boolean_toggle" invisible="not allow_selection"/>
+                    <field name="encounter_table_id" domain="allowed_table_domain"/>
                 </group>
                 <group>
                     <field name="difficulty_choice"/>
