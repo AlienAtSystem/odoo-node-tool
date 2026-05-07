@@ -28,6 +28,7 @@ class Location(models.Model):
             action['context'].update({
                 'default_selected_table_ids': tables.ids,
                 'default_use_selected_table': True,
+                'default_encounter_table_id': tables[0].id,
             })
         return action
 
