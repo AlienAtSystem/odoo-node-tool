@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_treasure_table_user,access_treasure_table_user,treasure_tool.model_treasure_table,base.group_user,1,1,1,1
+access_treasure_table_line_user,access_treasure_table_line_user,treasure_tool.model_treasure_table_line,base.group_user,1,1,1,1
+access_treasure_artifact_user,access_treasure_artifact_user,treasure_tool.model_treasure_artifact,base.group_user,1,1,1,1
+access_treasure_coin_hoard_user,access_treasure_coin_hoard_user,treasure_tool.model_treasure_coin_hoard,base.group_user,1,1,1,1
+access_treasure_coin_type_user,access_treasure_coin_type_user,treasure_tool.model_treasure_coin_type,base.group_user,1,1,1,1
+access_treasure_artifact_tag_user,access_treasure_artifact_tag_user,treasure_tool.model_treasure_artifact_tag,base.group_user,1,1,1,1

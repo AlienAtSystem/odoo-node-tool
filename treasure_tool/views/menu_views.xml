@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="treasure_table_action" model="ir.actions.act_window">
+            <field name="name">Treasure Tables</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">treasure.table</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No treasure tables found. Let's create one!
+                </p>
+            </field>
+        </record>
+
+        <record id="treasure_artifact_action" model="ir.actions.act_window">
+            <field name="name">Artifacts</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">treasure.artifact</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No artifacts found. You must have failed your Search check.
+                </p>
+            </field>
+        </record>
+
+        <record id="treasure_coin_hoard_action" model="ir.actions.act_window">
+            <field name="name">Coin Hoards</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">treasure.coin.hoard</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No coin hoards found. Maybe they're behind a secret door?
+                </p>
+            </field>
+        </record>
+
+        <record id="treasure_coin_type_action" model="ir.actions.act_window">
+            <field name="name">Coin Types</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">treasure.coin.type</field>
+            <field name="view_mode">tree</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No coin types found. Let's create one!
+                </p>
+            </field>
+        </record>
+
+        <record id="treasure_artifact_tag_action" model="ir.actions.act_window">
+            <field name="name">Treasure Tags</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">treasure.artifact.tag</field>
+            <field name="view_mode">tree</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No tags found. Let's create one!
+                </p>
+            </field>
+        </record>
+
+
+        <menuitem name="Treasury"
+                  id="menu_treasury_root"
+                  action=""
+                  web_icon="treasure_tool,static/description/icon.png"
+                  sequence="5"/>
+
+        <menuitem name="Treasure"
+                  id="menu_treasure_elements"
+                  action=""
+                  sequence="10"
+                  parent="menu_treasury_root"/>
+
+        <menuitem name="Treasure Tables"
+                  id="menu_treasure_tables"
+                  action="treasure_table_action"
+                  sequence="10"
+                  parent="menu_treasure_elements"/>
+
+        <menuitem name="Artifacts"
+                  id="menu_treasury_artifacts"
+                  action="treasure_artifact_action"
+                  sequence="20"
+                  parent="menu_treasure_elements"/>
+
+        <menuitem name="Coin Hoards"
+                  id="menu_treasury_coin_hoards"
+                  action="treasure_coin_hoard_action"
+                  sequence="30"
+                  parent="menu_treasure_elements"/>
+
+        <menuitem name="Configuration"
+                  id="menu_treasure_config"
+                  action=""
+                  sequence="10"
+                  parent="menu_treasury_root"/>
+
+        <menuitem name="Coin Types"
+                  id="menu_treasury_coin_types"
+                  action="treasure_coin_type_action"
+                  sequence="10"
+                  parent="menu_treasure_config"/>
+
+        <menuitem name="Treasure Tags"
+                  id="menu_treasury_artifact_tags"
+                  action="treasure_artifact_tag_action"
+                  sequence="20"
+                  parent="menu_treasure_config"/>
+
+    </data>
+</odoo>

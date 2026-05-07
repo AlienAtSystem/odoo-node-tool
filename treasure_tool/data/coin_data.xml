@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record model="treasure.coin.type" id="coin_type_silver">
+            <field name="name">Silver Pieces</field>
+            <field name="value_factor">1</field>
+        </record>
+    </data>
+</odoo>

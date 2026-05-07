@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="treasure_artifact_form_view">
+            <field name="name">Artifact Form View</field>
+            <field name="model">treasure.artifact</field>
+            <field name="arch" type="xml">
+                <form string="Artifact">
+                    <header>
+                    </header>
+                    <sheet string="Artifact">
+                        <div class="oe_button_box" name="button_box" groups="base.group_user">
+                        </div>
+
+                        <div class="oe_title pr-0">
+                            <h1 class="d-flex flex-row justify-content-between">
+                                <field name="name" class="text-truncate" placeholder="Object Name..." required="True"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="value"/>
+                        </group>
+                        <notebook>
+                            <page string="Content">
+                                <group>
+                                    <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create': True}"/>
+                                    <field name="description" type="html"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="treasure_artifact_tree_view">
+            <field name="name">Artifact Tree View</field>
+            <field name="model">treasure.artifact</field>
+            <field name="arch" type="xml">
+                <tree string="Artifacts" sample="1">
+                    <field name="name"/>
+                    <field name="value"/>
+                    <field name="tag_ids" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="treasure_artifact_search_view">
+            <field name="name">Artifact Search View</field>
+            <field name="model">treasure.artifact</field>
+            <field name="arch" type="xml">
+                <search string="Artifacts">
+                    <field name="name" string="Name"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Tag" name="groupby_tag" domain="[]" context="{'group_by': 'tag_ids'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="treasure_artifact_tag_view">
+            <field name="name">Treasure Tag View</field>
+            <field name="model">treasure.artifact.tag</field>
+            <field name="arch" type="xml">
+                <tree string="Tags" editable="bottom" sample="1">
+                    <field name="name"/>
+                    <field name="color" widget="color_picker"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>

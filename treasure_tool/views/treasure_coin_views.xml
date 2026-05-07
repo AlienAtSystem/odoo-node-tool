@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="treasure_coin_hoard_form_view">
+            <field name="name">Coin Hoard Form View</field>
+            <field name="model">treasure.coin.hoard</field>
+            <field name="arch" type="xml">
+                <form string="Coin Hoard">
+                    <header>
+                    </header>
+                    <sheet string="Coin Hoard">
+                        <div class="oe_button_box" name="button_box" groups="base.group_user">
+                        </div>
+
+                        <div class="oe_title pr-0">
+                            <h1 class="d-flex flex-row justify-content-between">
+                                <field name="coin_type_id"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="generation_method"/>
+                            <div class="o_row">
+                                <field class="o_label" name="param_1_name"/>
+                                <field name="param_1"/>
+                            </div>
+                            <field name="param_2_display" invisible="1"/>
+                            <div class="o_row" invisible="not param_2_display">
+                                <field class="o_label" name="param_2_name"/>
+                                <field name="param_2"/>
+                            </div>
+                        </group>
+                        <group>
+                            <field name="average_value"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="treasure_coin_hoard_tree_view">
+            <field name="name">Coin Hoard Tree View</field>
+            <field name="model">treasure.coin.hoard</field>
+            <field name="arch" type="xml">
+                <tree string="Coin Hoards" sample="1">
+                    <field name="display_name"/>
+                    <field name="average_value"/>
+                    <field name="generation_method"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="treasure_coin_hoard_search_view">
+            <field name="name">Coin Hoard Search View</field>
+            <field name="model">treasure.coin.hoard</field>
+            <field name="arch" type="xml">
+                <search string="Coin Hoards">
+                    <group expand="0" string="Group By">
+                        <filter string="Type" name="groupby_type" domain="[]" context="{'group_by': 'coin_type_id'}"/>
+                        <filter string="Generation Method" name="groupby_method" domain="[]" context="{'group_by': 'generation_method'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="treasure_coin_type_tree_view">
+            <field name="name">Coin Type Tree View</field>
+            <field name="model">treasure.coin.type</field>
+            <field name="arch" type="xml">
+                <tree string="Coin Types" editable="bottom" sample="1">
+                    <field name="name"/>
+                    <field name="value_factor"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="treasure_coin_type_search_view">
+            <field name="name">Coin Type Search View</field>
+            <field name="model">treasure.coin.type</field>
+            <field name="arch" type="xml">
+                <search string="Coin Types">
+                    <field name="name" string="Name"/>
+                </search>
+            </field>
+        </record>
+
+    </data>
+</odoo>

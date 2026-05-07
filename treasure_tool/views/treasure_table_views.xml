@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="treasure_table_form_view">
+            <field name="name">Treasure Table Form View</field>
+            <field name="model">treasure.table</field>
+            <field name="arch" type="xml">
+                <form string="Treasure Table">
+                    <header>
+<!--                        TODO <button name="action_treasure_generator" string="Generate Treasure" type="object"/>-->
+                    </header>
+                    <sheet string="Treasure Table">
+                        <div class="oe_button_box" name="button_box" groups="base.group_user">
+                        </div>
+
+                        <div class="oe_title pr-0">
+                            <h1 class="d-flex flex-row justify-content-between">
+                                <field name="name" class="text-truncate" placeholder="Name..." required="True"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="num_pulls"/>
+                            <field name="average_value"/>
+                        </group>
+                        <notebook>
+                            <page string="Content">
+                                <field name="table_line_ids">
+                                    <tree string="Treasure Table Lines" editable="bottom">
+                                        <field name="res_model_ref"/>
+                                        <field name="average_value"/>
+                                        <field name="multiplier"/>
+                                        <field name="ticket_amount"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="treasure_table_tree_view">
+            <field name="name">Treasure Table Tree View</field>
+            <field name="model">treasure.table</field>
+            <field name="arch" type="xml">
+                <tree string="Treasure Table" sample="1">
+                    <field name="name"/>
+<!--                    <field name="average_value"/>-->
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="treasure_table_search_view">
+            <field name="name">Treasure Table Search View</field>
+            <field name="model">treasure.table</field>
+            <field name="arch" type="xml">
+                <search string="Treasure">
+                    <field name="name" string="Treasure"/>
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>
