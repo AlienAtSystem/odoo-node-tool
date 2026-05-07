@@ -13,8 +13,10 @@
     'data': [
         'security/ir.model.access.csv',
         'data/lanchester_data.xml',
+        'report/bestiary_encounter_cr_report.xml',
         'views/bestiary_views.xml',
         'views/encounter_views.xml',
+        'views/report_views.xml',
         'views/menu_views.xml',
         'wizards/encounter_generation_wizard.xml',
     ],

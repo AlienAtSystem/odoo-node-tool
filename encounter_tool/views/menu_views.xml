@@ -53,5 +53,11 @@
                   sequence="20"
                   parent="menu_bestiary_elements"/>
 
+        <menuitem name="Encounter Comparison"
+                  id="menu_bestiary_encounter_cr_report"
+                  action="action_report_cr"
+                  sequence="30"
+                  parent="menu_bestiary_elements"/>
+
     </data>
 </odoo>

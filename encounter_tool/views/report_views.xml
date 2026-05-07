@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="action_report_cr" model="ir.actions.report">
+            <field name="name">Challenge Comparison</field>
+            <field name="model">bestiary.encounter.table</field>
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">encounter_tool.encounter_cr_report</field>
+            <field name="report_file">encounter_tool.encounter_cr_report</field>
+        </record>
+    </data>
+</odoo>

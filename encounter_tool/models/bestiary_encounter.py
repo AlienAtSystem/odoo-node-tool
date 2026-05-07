@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from decorator import n_args
 
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, ValidationError, AccessError

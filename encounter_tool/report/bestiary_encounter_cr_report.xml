@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="encounter_cr_report">
+        <t t-set="data_report_landscape" t-value="True"/>
+        <t t-set="full_width" t-value="True"/>
+        <t t-call="web.html_container">
+            <h1>Encounter Comparison</h1>
+            <h6>Average Amount: <t t-esc="num_total_average" t-options="{'widget': 'float', 'precision': 2}"/></h6>
+            <h6>Average Monster Challenge: <t t-out="cr_total_average" t-options="{'widget': 'float', 'precision': 2}"/></h6>
+            <h6>Average Encounter Challenge: <t t-out="cr_qualified_average" t-options="{'widget': 'float', 'precision': 2}"/></h6>
+            <table class="table table-borderless">
+                <thead>
+                    <tr>
+                        <th>Table</th>
+                        <th class="text-end">Encounter CR</th>
+                        <th class="text-end">Average Monster CR</th>
+                        <th class="text-end">Min Amount</th>
+                        <th class="text-end">Average Amount</th>
+                        <th class="text-end">Max Amount</th>
+                        <th class="text-end">Entries</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="lines" t-as="line">
+                        <tr>
+                            <td t-out="line['name']"/>
+                            <td t-out="line['qualified_cr']" t-options="{'widget': 'float', 'precision': 2}" class="text-end"/>
+                            <td t-out="line['average_cr']" t-options="{'widget': 'float', 'precision': 2}" class="text-end"/>
+                            <td t-out="line['number_appearing_min']" t-options="{'widget': 'float', 'precision': 0}" class="text-end"/>
+                            <td t-out="line['number_appearing_average']" t-options="{'widget': 'float', 'precision': 2}" class="text-end"/>
+                            <td t-out="line['number_appearing_max']" t-options="{'widget': 'float', 'precision': 0}" class="text-end"/>
+                            <td t-out="line['num_entries']" class="text-end"/>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+        </t>
+    </template>
+</odoo>
