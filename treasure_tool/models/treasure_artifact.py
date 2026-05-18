@@ -10,12 +10,21 @@ class Artifact(models.Model):
 
     name = fields.Char(string='Name')
     value = fields.Float(string='Value')
-    description = fields.Html(string='Description')
+    description_rules = fields.Html('Statblock')
+    description_lore = fields.Html('Lore')
     tag_ids = fields.Many2many('treasure.artifact.tag', string='Tags')
 
     @property
     def average_value(self):
         return self.value
+
+    def _generate_treasure(self, num_pulls_override=None):
+        self.ensure_one()
+        if num_pulls_override is not None:
+            num_pulls = int(num_pulls_override)
+        else:
+            num_pulls = 1
+        return [{'res_reference': f'treasure.artifact,{self.id}', 'amount': num_pulls}]
 
 
 class ArtifactTag(models.Model):

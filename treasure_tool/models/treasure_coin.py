@@ -2,6 +2,7 @@
 
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, ValidationError, AccessError
+from numpy import random
 
 class CoinHoard(models.Model):
     _name = 'treasure.coin.hoard'
@@ -17,7 +18,7 @@ class CoinHoard(models.Model):
         ('linear', 'Linear'),
         ('poisson', 'Poisson'),
         ('geometric', 'Geometric'),
-    ], string="Distribution Curve")
+    ], string="Distribution Curve", required=True, default='linear')
 
     param_1 = fields.Float(string='Parameter 1', compute='_compute_parameters', store=True, readonly=False)
     param_1_name = fields.Char(string='Parameter 1 Name', compute='_compute_parameter_names')
@@ -42,6 +43,10 @@ class CoinHoard(models.Model):
                 rec.param_2_display = True
             elif rec.generation_method in ('geometric', 'poisson'):
                 rec.param_1_name = "Mean"
+                rec.param_2_name = "N/A"
+                rec.param_2_display = False
+            else:
+                rec.param_1_name = "N/A"
                 rec.param_2_name = "N/A"
                 rec.param_2_display = False
 
@@ -73,6 +78,24 @@ class CoinHoard(models.Model):
                     raise ValidationError(_("The minimun can't be larger than the maximum"))
                 if rec.param_2 < 0:
                     raise ValidationError(_('The distribution parameters cannot be negative.'))
+
+    def _generate_treasure(self, num_pulls_override=None):
+        self.ensure_one()
+        if num_pulls_override is not None:
+            num_pulls = int(num_pulls_override)
+        else:
+            num_pulls = 1
+        rand_gen = random.default_rng()
+        if self.generation_method == 'linear':
+            amount = rand_gen.integers(low=round(self.param_1), high=round(self.param_2), endpoint=True)
+        elif self.generation_method == 'geometric':
+            amount = rand_gen.geometric(1.0/self.param_1)
+        elif self.generation_method == 'poisson':
+            amount = rand_gen.poisson(self.param_1)
+        else:
+            amount = 1
+        amount *= num_pulls
+        return [{'res_reference': f'treasure.coin.type,{self.coin_type_id.id}', 'amount': amount}]
 
 class CoinType(models.Model):
     _name = 'treasure.coin.type'

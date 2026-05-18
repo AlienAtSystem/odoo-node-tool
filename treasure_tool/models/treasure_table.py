@@ -5,6 +5,7 @@ from odoo.exceptions import UserError, ValidationError, AccessError
 from odoo.tools import SQL
 from collections import defaultdict
 import itertools
+import random
 
 
 class TreasureTable(models.Model):
@@ -64,6 +65,28 @@ class TreasureTable(models.Model):
                     todo.add(id2)
         return True
 
+    def action_treasure_generator(self):
+        self.ensure_one()
+        action = self.env["ir.actions.actions"]._for_xml_id("treasure_tool.act_treasure_generation")
+        action['context'] = {
+            'default_treasure_table_id': self.id,
+        }
+        return action
+
+    def _generate_treasure(self, num_pulls_override=None):
+        self.ensure_one()
+        if num_pulls_override is not None:
+            num_pulls = int(num_pulls_override)
+        else:
+            num_pulls = self.num_pulls
+        result = []
+        for _ in range(num_pulls):
+            chosen_line = random.choices(self.table_line_ids, weights=self.table_line_ids.mapped('ticket_amount'))[0]
+            sub_res = chosen_line.res_model_ref._generate_treasure()
+            for entry in sub_res:
+                entry['amount'] *= chosen_line.multiplier
+            result += sub_res
+        return result
 
 class TreasureTableLine(models.Model):
     _name = 'treasure.table.line'

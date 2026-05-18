@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_treasure_generation" model="ir.ui.view">
+        <field name="name">view_treasure_generation_wizard</field>
+        <field name="model">treasure.table.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Treasure Generation">
+                <header>
+                    <field name="allow_apply" invisible="True"/>
+                    <field name="allow_selection" invisible="True"/>
+                    <field name="allowed_table_domain" invisible="True"/>
+                    <field name="selected_table_ids" invisible="True"/>
+                </header>
+                <group>
+                    <field name="use_selected_table" widget="boolean_toggle" invisible="not allow_selection"/>
+                    <field name="treasure_table_id" domain="allowed_table_domain"/>
+                </group>
+                <group>
+                    <field name="num_pulls"/>
+                </group>
+                <group>
+                    <button name="action_generate_treasure" type="object" class="btn btn-primary" title="Generate Treasure">
+                        <span>Generate</span>
+                    </button>
+                    <field name="output_pretty" readonly="True"/>
+                </group>
+                <footer>
+                    <button name="action_apply" string="Apply" type="object" class="btn-primary" invisible="not allow_apply"/>
+                    <button string="Close" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="act_treasure_generation" model="ir.actions.act_window">
+        <field name="name">Generate Treasure</field>
+        <field name="res_model">treasure.table.wizard</field>
+        <field name="view_id" ref="view_treasure_generation"/>
+        <field name="view_mode">form</field>
+        <field name="context">{}</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

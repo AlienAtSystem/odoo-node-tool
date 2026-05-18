@@ -7,7 +7,7 @@
             <field name="arch" type="xml">
                 <form string="Treasure Table">
                     <header>
-<!--                        TODO <button name="action_treasure_generator" string="Generate Treasure" type="object"/>-->
+                        <button name="action_treasure_generator" string="Generate Treasure" type="object"/>
                     </header>
                     <sheet string="Treasure Table">
                         <div class="oe_button_box" name="button_box" groups="base.group_user">
